@@ -1,0 +1,16 @@
+#{extends 'main.html' /}
+#{set title:'Dashboard' /}
+
+#{menu id:"dashboard"/}
+
+#{list items:stationList, as:'station'}
+<div class="content box">
+  <h1 class="title">
+    ${station.name}
+  </h1>
+    <p>
+        <a href="/stations/${station.id}">View</a>
+    </p>
+</div>
+#{/list}
+#{addstation /}
