@@ -15,17 +15,18 @@ import play.db.jpa.Model;
  * This class can be used to store and manipulate weather data for
  * a particular station, and can be used in conjunction with
  * the Reading class and the Conversion utility class to perform
- * conversions on weather data
+ * conversions on weather data and to manipulate station data
  *
  * @Author: Aidas Vaiciunas
- * @Version: 1.0
+ * @Version: 1.1
  */
 @Entity
 public class Station extends Model {
     /**
      * Fields for Station
      */
-    public String name;
+    private String name;
+    private float lat, lng;
     @OneToMany(cascade = CascadeType.ALL)
 
     // Readings constructed in an ArrayList
@@ -158,4 +159,27 @@ public class Station extends Model {
         }
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public float getLat() {
+        return lat;
+    }
+
+    public float getLng() {
+        return lng;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setLat(float lat) {
+        this.lat = lat;
+    }
+
+    public void setLng(float lng) {
+        this.lng = lng;
+    }
 }

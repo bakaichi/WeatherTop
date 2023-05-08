@@ -5,32 +5,43 @@
 
 <div class="content box">
     <h1 class="title">
-        ${station.name}
+        ${station.name}<br>
     </h1>
 
     <div class="columns">
-        <div class="column is-3">
+        <div class="column is-one-fifth">
+            <div class="card">
+                <div class="card-content">
+                    <div class="content has-text-centered">
+                        <h2>${station.name}</h2><br>
+                        Lat: ${station.lat}<br>
+                        Lng: ${station.lng}<br><br><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="column is-one-fifth">
             <div class="card">
                 <div class="card-content">
                     <div class="content has-text-centered">
                         <h2>Weather</h2>
-                        ${station.toCode()}<br><br><br><br>
+                        ${station.toCode()}<br><br><br><br><br>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="column is-3">
+        <div class="column is-one-fifth">
             <div class="card">
                 <div class="card-content">
                     <div class="content has-text-centered">
-                        <h2>Temperature</h2>
+                        <h2>Temp</h2>
                         ${station.getLatestTemp()}°C<br>
-                        ${station.toFahrenheit()}°F <br><br><br>
+                        ${station.toFahrenheit()}°F <br><br><br><br>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="column is-3">
+        <div class="column is-one-fifth">
             <div class="card">
                 <div class="card-content">
                     <div class="content has-text-centered">
@@ -43,12 +54,12 @@
                 </div>
             </div>
         </div>
-        <div class="column is-3">
+        <div class="column is-one-fifth">
             <div class="card">
                 <div class="card-content">
                     <div class="content has-text-centered">
                         <h2>Pressure</h2>
-                        ${station.getLatestPressure()} hpa<br><br><br><br>
+                        ${station.getLatestPressure()} hpa<br><br><br><br><br>
                     </div>
                 </div>
             </div>
