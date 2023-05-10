@@ -1,6 +1,8 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import utilities.Conversion;
@@ -38,6 +40,12 @@ public class Station extends Model {
      */
     public Station(String name) {
         this.name = name;
+    }
+
+    public Station(String name, float lat, float lng){
+        this.name = name;
+        this.lat = lat;
+        this.lng = lng;
     }
 
     /**
@@ -159,6 +167,98 @@ public class Station extends Model {
         }
     }
 
+    /**
+     * This method loops through each element of an array and finds the maximum value
+     * stored within.
+     * @return max value of wind speed
+     */
+    public double getMaxWindSpeed(){
+       double maxWindSpeed = Double.MIN_VALUE;
+       for (Reading reading : readings){
+           if (reading.getWindSpeed() > maxWindSpeed) {
+               maxWindSpeed = reading.getWindSpeed();
+           }
+       }
+       return maxWindSpeed;
+    }
+
+    /**
+     * This method loops through each element of an array and finds the minimum value
+     * stored within.
+     * @return minimum value of wind speed
+     */
+    public double getMinWindSpeed(){
+        double minWindSpeed = Double.MAX_VALUE;
+        for (Reading reading : readings){
+            if (reading.getWindSpeed() < minWindSpeed){
+                minWindSpeed = reading.getWindSpeed();
+            }
+        }
+        return minWindSpeed;
+    }
+
+    /**
+     * This method loops through each element of an array and finds the maximum value
+     * stored within.
+     * @return max value of Pressure
+     */
+    public int getMaxPressure(){
+        int maxPressure = Integer.MIN_VALUE;
+        for (Reading reading : readings){
+            if (reading.getPressure() > maxPressure){
+                maxPressure = reading.getPressure();
+            }
+        }
+        return maxPressure;
+    }
+
+    /**
+     * This method loops through each element of an array and finds the minimum value
+     * stored within.
+     * @return minimum value of Pressure
+     */
+    public int getMinPressure(){
+        int minPressure = Integer.MAX_VALUE;
+        for (Reading reading : readings){
+            if (reading.getPressure() < minPressure){
+                minPressure = reading.getPressure();
+            }
+        }
+        return minPressure;
+    }
+
+    /**
+     * This method loops through each element of an array and finds the maximum value
+     * stored within.
+     * @return max value of Temperature
+     */
+    public double getMaxTemp(){
+        double maxTemp = Double.MIN_VALUE;
+        for (Reading reading : readings){
+            if (reading.getTemperature() > maxTemp){
+                maxTemp = reading.getTemperature();
+            }
+        }
+        return maxTemp;
+    }
+
+    /**
+     * This method loops through each element of an array and finds the minimum value
+     * stored within.
+     * @return minimum value of Temperature
+     */
+    public double getMinTemp(){
+        double minTemp = Double.MAX_VALUE;
+        for (Reading reading : readings){
+            if (reading.getTemperature() < minTemp){
+                minTemp = reading.getTemperature();
+            }
+        }
+        return minTemp;
+    }
+
+    // getters
+
     public String getName() {
         return name;
     }
@@ -170,6 +270,8 @@ public class Station extends Model {
     public float getLng() {
         return lng;
     }
+
+    // setters
 
     public void setName(String name) {
         this.name = name;

@@ -15,7 +15,7 @@
                     <div class="content has-text-centered">
                         <h2>${station.name}</h2><br>
                         Lat: ${station.lat}<br>
-                        Lng: ${station.lng}<br><br><br>
+                        Lng: ${station.lng}<br><br><br><br>
                     </div>
                 </div>
             </div>
@@ -25,7 +25,7 @@
                 <div class="card-content">
                     <div class="content has-text-centered">
                         <h2>Weather</h2>
-                        ${station.toCode()}<br><br><br><br><br>
+                        ${station.toCode()}<br><br><br><br><br><br>
                     </div>
                 </div>
             </div>
@@ -36,7 +36,9 @@
                     <div class="content has-text-centered">
                         <h2>Temp</h2>
                         ${station.getLatestTemp()}°C<br>
-                        ${station.toFahrenheit()}°F <br><br><br><br>
+                        ${station.toFahrenheit()}°F <br>
+                        Max: ${station.getMaxTemp()}°C<br>
+                        Min: ${station.getMinTemp()}°C<br><br><br>
                     </div>
                 </div>
             </div>
@@ -49,7 +51,9 @@
                         ${station.toBeufort()} bft<br>
                         ${station.windDirection()}<br>
                         Feels like <br>
-                        ${station.toWindChill()}°C
+                        ${station.toWindChill()}°C <br>
+                        Max ${station.getMaxWindSpeed()} km/h <br>
+                        Min ${station.getMinWindSpeed()} km/h
                     </div>
                 </div>
             </div>
@@ -59,7 +63,9 @@
                 <div class="card-content">
                     <div class="content has-text-centered">
                         <h2>Pressure</h2>
-                        ${station.getLatestPressure()} hpa<br><br><br><br><br>
+                        ${station.getLatestPressure()} hpa<br>
+                        Max: ${station.getMaxPressure()} hpa<br>
+                        Min: ${station.getMinPressure()} hpa <br><br><br><br>
                     </div>
                 </div>
             </div>
