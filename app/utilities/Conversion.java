@@ -33,9 +33,47 @@ public class Conversion extends Model{
         return s;
     }
 
+    public static String convertToWeatherIcon(int code){
+        String s = null;
+        switch (code){
+            case 800: s = "fa-cloud-bolt";
+                break;
+            case 700: s = "fa-cloud-meatball";
+                break;
+            case 600: s = "fa-cloud-rain";
+                break;
+            case 500: s = "fa-cloud-showers-water";
+                break;
+            case 400: s = "fa-cloud-showers-heavy";
+                break;
+            case 300: s = "fa-cloud";
+                break;
+            case 200: s = "fa-cloud-sun";
+                break;
+            case 100: s = "fa-sun";
+        }
+        return s;
+    }
+
     //converts celcius to fahrenheit
     public static double convertToFahrenheit(double temperature){
         return temperature * 9 / 5 + 32;
+    }
+
+    public static String convertToTempIcon(double temperature){
+        String s = null;
+        if (temperature >= 35){
+            s = "fa-temperature-high";
+        } else if (temperature <= 35){
+            s = "fa-temperature-half";
+        } else if (temperature <= 20) {
+            s = "fa-temperature-quarter";
+        } else if (temperature <= 10) {
+            s = "fa-temperature-low";
+        } else {
+            s = "fa-temperature-empty";
+        }
+        return s;
     }
 
     // wind speed to beufort scale

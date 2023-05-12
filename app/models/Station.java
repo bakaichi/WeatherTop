@@ -17,10 +17,12 @@ import play.db.jpa.Model;
  * This class can be used to store and manipulate weather data for
  * a particular station, and can be used in conjunction with
  * the Reading class and the Conversion utility class to perform
- * conversions on weather data and to manipulate station data
+ * conversions on weather data and to manipulate station data.
+ * This class also helps with calculations to Display different icons
+ * for weather readings.
  *
  * @Author: Aidas Vaiciunas
- * @Version: 1.1
+ * @Version: 2.0
  */
 @Entity
 public class Station extends Model {
@@ -63,6 +65,16 @@ public class Station extends Model {
     }
 
     /**
+     * This method works in conjuction with Conversion class to work out the correct Weather icon
+     * to use.
+     *
+     * Return: String that will display appropriate icon via Bulma Syntax
+     */
+    public String toCodeIcon(){
+        return Conversion.convertToWeatherIcon(getLatestCode());
+    }
+
+    /**
      * This method is responsible to convert the Latest code into a string value
      * the conversion itself is linked to "Conversion" class
      *
@@ -85,6 +97,16 @@ public class Station extends Model {
         } else {
             return readings.get(readings.size() -1).getTemperature();
         }
+    }
+
+    /**
+     * This method works in conjuction with Conversion class to work out the correct Temperature icon
+     * to use.
+     *
+     * Return: String that will display appropriate icon via Bulma Syntax
+     */
+    public String toTempIcon(){
+        return Conversion.convertToTempIcon(getLatestTemp());
     }
 
     /**

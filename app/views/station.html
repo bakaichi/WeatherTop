@@ -3,6 +3,7 @@
 
 #{menu id:"StationList"/}
 
+#{if station.readings.size() > 0}
 <div class="content box">
     <h1 class="title">
         ${station.name}<br>
@@ -24,7 +25,7 @@
             <div class="card" style="min-height: 100%;">
                 <div class="card-content">
                     <div class="content has-text-centered">
-                        <h2><i class="fa-solid fa-cloud-sun"></i> <br> Weather</h2><br>
+                        <h2><i class="fa-solid ${station.toCodeIcon()}"></i> <br> Weather</h2><br>
                         ${station.toCode()}<br><br><br><br><br>
                     </div>
                 </div>
@@ -34,7 +35,7 @@
             <div class="card" style="min-height: 100%;">
                 <div class="card-content">
                     <div class="content has-text-centered">
-                        <h2><i class="fa-solid fa-temperature-quarter"></i> <br>Temp</h2>
+                        <h2><i class="fa-solid ${station.toTempIcon()}"></i> <br>Temp</h2>
                         ${station.getLatestTemp()}°C<br>
                         ${station.toFahrenheit()}°F <br>
                         Max: ${station.getMaxTemp()}°C<br>
@@ -73,6 +74,12 @@
     </div>
     #{listreadings station:station /}
     #{addreading station:station /}
+#{/if}
+    #{else}
+    <div class="card" style="min-width: 100%"> #{listreadings station:station /}</div>
+        <h1><br> There are no Readings for ${station.name}<br><br><br></h1>
+    #{addreading station:station /}
+    #{/else}
 </div>
 
 

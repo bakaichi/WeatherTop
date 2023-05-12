@@ -10,6 +10,7 @@ GET     /stations/{id}                          StationCtrl.index
 GET     /signup                                 Accounts.signup
 GET     /login                                  Accounts.login
 GET     /logout                                 Accounts.logout
+GET     /dashboard/{id}/deleteStation/{stationid} Dashboard.deleteStation
 
 # Post Page
 POST    /dashboard/addstation                   Dashboard.addStation

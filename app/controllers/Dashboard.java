@@ -31,5 +31,15 @@ public class Dashboard extends Controller{
     redirect("/dashboard");
   }
 
+  public static void deleteStation(Long id, Long stationid){
+    Member member = Member.findById(id);
+    Station station = Station.findById(stationid);
+    member.stationList.remove(station);
+    member.save();
+    station.delete();
+    Logger.info("Deleting " + station.getName());
+    redirect("/dashboard");
+  }
+
 }
 
