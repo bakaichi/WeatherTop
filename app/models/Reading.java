@@ -8,17 +8,14 @@ import play.db.jpa.Model;
  * This class is used to store weather readings in conjunction to the data.yml file
  *
  * @author Aidas Vaiciunas
- * @version 1.0
+ * @version 2.0
  */
 @Entity
 public class Reading extends Model
 {
     // fields
-    private int code;
-    private double temperature;
-    private double windSpeed;
-    private int pressure;
-    private int windDirection;
+    private int code, pressure, windDirection;
+    private double temperature, windSpeed;
 
     /**
      * Constructor for Reading
