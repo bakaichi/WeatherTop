@@ -4,10 +4,24 @@ import javax.persistence.Entity;
 
 import play.db.jpa.Model;
 
+/**
+ * This class is used entirely for converting and manipulating different data
+ * as an example for converting weather codes to words and performing calculations
+ * like Celcius to Fahrenheit. This class is intended to be called by others to help
+ * with various calculations.
+ *
+ * @author Aidas Vaiciunas
+ * @version 2.0
+ */
 @Entity
 public class Conversion extends Model{
 
-    //converts weather code to string
+    /**
+     * This method converts various weather codes to their corresponding meanings
+     * in String format.
+     * @param code read in from the database
+     * @return String conversion of codes
+     */
     public static String convertWeatherCode(int code){
         String s;
         switch (code){
@@ -33,6 +47,12 @@ public class Conversion extends Model{
         return s;
     }
 
+    /**
+     * This method converts different weather Codes into bulma framework calls
+     * for various icons that represent the weather.
+     * @param code read in from the database
+     * @return correct icon call for bulma framework
+     */
     public static String convertToWeatherIcon(int code){
         String s = null;
         switch (code){
@@ -150,6 +170,12 @@ public class Conversion extends Model{
             windDirection = "North";
         }
         return windDirection;
+    }
+
+    public static double rounding(float num){
+        double k;
+        k = Math.round(num * 1000.0) / 1000.0;
+        return k;
     }
     
 }

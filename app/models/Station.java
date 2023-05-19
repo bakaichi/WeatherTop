@@ -93,7 +93,6 @@ public class Station extends Model {
      * the database
      * @return latest Temperature in the ArrayList
      */
-    //get latest temperature
     public double getLatestTemp(){
         if (readings.isEmpty()){
             return 0;
@@ -130,7 +129,6 @@ public class Station extends Model {
             return readings.get(readings.size() -1).getWindSpeed();
         }
     }
-
 
     /**
      * This method gets the latest Wind Direction from the database/ArrayList
@@ -276,6 +274,22 @@ public class Station extends Model {
             }
         }
         return minTemp;
+    }
+
+    /**
+     * This method works with Conversion class to convert large decimal points to 3
+     * @return double with up to 3 decimal points
+     */
+    public double roundLat(){
+        return Conversion.rounding(getLat());
+    }
+
+    /**
+     * This method works with Conversion class to convert large decimal points to 3
+     * @return double with up to 3 decimal points
+     */
+    public double roundLng(){
+        return Conversion.rounding(getLng());
     }
 
     // getters
