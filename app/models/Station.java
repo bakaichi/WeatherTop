@@ -21,8 +21,8 @@ import play.db.jpa.Model;
  * This class also helps with calculations to Display different icons
  * for weather readings.
  *
- * @Author: Aidas Vaiciunas
- * @Version: 2.0
+ * @author Aidas Vaiciunas
+ * @version 2.0
  */
 @Entity
 public class Station extends Model {
@@ -44,6 +44,12 @@ public class Station extends Model {
         this.name = name;
     }
 
+    /**
+     * Overloaded constructor for Station taking 3 parameters
+     * @param name = name of the station
+     * @param lat = latitude of the station
+     * @param lng = longitude of the station
+     */
     public Station(String name, float lat, float lng){
         this.name = name;
         this.lat = lat;
@@ -54,7 +60,7 @@ public class Station extends Model {
      * This method is responsible for retrieving the latest code added to
      * the database
      *
-     * @returns Latest code from the ArrayList
+     * @return latest code from the ArrayList
      */
     public int getLatestCode(){
         if (readings.isEmpty()){  // if readings are empty return 0
@@ -67,8 +73,7 @@ public class Station extends Model {
     /**
      * This method works in conjuction with Conversion class to work out the correct Weather icon
      * to use.
-     *
-     * Return: String that will display appropriate icon via Bulma Syntax
+     * @return String that will display appropriate icon via Bulma Syntax
      */
     public String toCodeIcon(){
         return Conversion.convertToWeatherIcon(getLatestCode());
@@ -77,8 +82,7 @@ public class Station extends Model {
     /**
      * This method is responsible to convert the Latest code into a string value
      * the conversion itself is linked to "Conversion" class
-     *
-     * @returns String "thunder, rain" etc.
+     * @return String "thunder, rain" etc.
      */
     public String toCode(){
         return Conversion.convertWeatherCode(getLatestCode());
@@ -87,8 +91,7 @@ public class Station extends Model {
     /**
      * This method is responsible for retrieving the latest Temperature added to
      * the database
-     *
-     * @returns latest Temperature in the ArrayList
+     * @return latest Temperature in the ArrayList
      */
     //get latest temperature
     public double getLatestTemp(){
@@ -102,8 +105,7 @@ public class Station extends Model {
     /**
      * This method works in conjuction with Conversion class to work out the correct Temperature icon
      * to use.
-     *
-     * Return: String that will display appropriate icon via Bulma Syntax
+     * @return String that will display appropriate icon via Bulma Syntax
      */
     public String toTempIcon(){
         return Conversion.convertToTempIcon(getLatestTemp());
@@ -111,8 +113,7 @@ public class Station extends Model {
 
     /**
      * This method converts the latest Temperature in Celcius into Fahrenheit value
-     *
-     * @returns double : Temperature in Fahrenheit
+     * @return double Temperature in Fahrenheit
      */
     public double toFahrenheit(){
         return Conversion.convertToFahrenheit(getLatestTemp());
@@ -120,8 +121,7 @@ public class Station extends Model {
 
     /**
      * This method retrieves the latest added WindSpeed from the Database/ArrayList
-     *
-     * @returns double: Latest Wind Speed
+     * @return double: Latest Wind Speed
      */
     public double getLatestWindSpeed(){
         if (readings.isEmpty()){
@@ -135,7 +135,7 @@ public class Station extends Model {
     /**
      * This method gets the latest Wind Direction from the database/ArrayList
      *
-     * @returns int: Latest added Wind Direction
+     * @return int: Latest added Wind Direction
      */
     public int getLatestWindDirection(){
         if(readings.isEmpty()){
@@ -148,7 +148,7 @@ public class Station extends Model {
     /**
      * This method takes latest wind direction and converts it into String value
      *
-     * @returns String: Numbers converted into Strings (North, East etc.)
+     * @return String: Numbers converted into Strings (North, East etc.)
      */
     public String windDirection(){
         return Conversion.windDirectionToString(getLatestWindDirection());
@@ -158,7 +158,7 @@ public class Station extends Model {
      * This method calculates Wind Chill by using Wind Speed and Temperature in
      * its calculation specified in "Conversion" class
      *
-     * @returns double: Wind chill factor.
+     * @return double: Wind chill factor.
      */
     public double toWindChill(){
         return Conversion.toWindChill(getLatestWindSpeed(), getLatestTemp());
@@ -168,18 +168,17 @@ public class Station extends Model {
      * This method converts Windpseed into Beufort scale and also converts double
      * value into an int (i.e. no decimal point result)
      *
-     * @returns int: In Beufort scale format
+     * @return int: In Beufort scale format
      */
     public int toBeufort(){
         int windSpeed = (int) getLatestWindSpeed(); // convert the double to int
         return Conversion.convertToBeufort(windSpeed); // convert the int to beufort
     }
 
-
     /**
      * This method gets latest Pressure from the ArrayList/Database
      *
-     * @returns int: Last added Pressure to the ArrayList
+     * @return int: Last added Pressure to the ArrayList
      */
     public int getLatestPressure(){
         if(readings.isEmpty()){

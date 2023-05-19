@@ -16,8 +16,8 @@ import java.util.List;
  * registered to the database and also checks if the password that the user has entered
  * is correct.
  *
- * @Author: Aidas Vaiciunas
- * @Version: 1.0
+ * @author Aidas Vaiciunas
+ * @version 1.0
  */
 @Entity
 public class Member extends Model {
@@ -40,10 +40,10 @@ public class Member extends Model {
 
     /**
      * This is a 'member' constructor that takes four parameters     *
-     * @param firstname
-     * @param lastname
-     * @param email
-     * @param password
+     * @param firstname = name of the user
+     * @param lastname = surname of the user
+     * @param email = email of the user
+     * @param password = password of the user
      */
     public Member(String firstname, String lastname, String email, String password){
         this.firstname = firstname;
@@ -56,7 +56,7 @@ public class Member extends Model {
      * This is a method in a Java class that allows you to find a member object by email.
      * The method takes in an email parameter and uses it to perform a database query to search
      * for a member object that matches the email.
-     * @param email
+     * @param email = email of the member
      * @return if found: Member object that was retrieved from the database otherwise: 'null'
      */
     public static Member findByEmail(String email){
@@ -66,7 +66,7 @@ public class Member extends Model {
     /**
      *This is a method in a Java class that checks whether a given password matches the password
      *  associated with an object instance of that class i.e. Email.
-     * @param password
+     * @param password = password of the user
      * @return This statement returns true if the given password matches or false otherwise.
      */
     public boolean checkPassword(String password){

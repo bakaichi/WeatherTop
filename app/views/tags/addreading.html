@@ -3,13 +3,25 @@
       <div class="field column ">
         <label class="label">Code</label>
         <div class="control">
-          <input class="input" placeholder="Weather code i.e. 800, 200" type="text" name="code">
+            <div class="select is-fullwidth">
+                <select name="code">
+                    <option>Select Code</option>
+                    <option>100</option>
+                    <option>200</option>
+                    <option>300</option>
+                    <option>400</option>
+                    <option>500</option>
+                    <option>600</option>
+                    <option>700</option>
+                    <option>800</option>
+                </select>
+            </div>
         </div>
       </div>
         <div class="field column">
             <label class="label">Temperature</label>
             <div class="control">
-                <input class="input" placeholder="Temperature in °C e.g. 0.0°C" type="text" name="temperature">
+                <input class="input" placeholder="Temperature in °C e.g. 0.0°C" type="text" name="temperature" required>
             </div>
         </div>
     </div>
@@ -17,13 +29,13 @@
         <div class="field column">
             <label class="label">Wind Speed</label>
             <div class="control">
-                <input class="input" placeholder="Wind Speed in km/h e.g. 3.5" type="text" name="windSpeed">
+                <input class="input" placeholder="Wind Speed in km/h e.g. 3.5" type="text" name="windSpeed" required>
             </div>
         </div>
         <div class="field column">
             <label class="label">Wind Direction</label>
             <div class="control">
-                <input class="input" placeholder="Wind Direction in ° e.g. 303.75 " type="text" name="windDirection">
+                <input class="input" placeholder="Wind Direction in ° e.g. 303.75 " type="text" name="windDirection" required>
             </div>
         </div>
     </div>
@@ -31,7 +43,7 @@
         <div class="field column is-half">
             <label class="label">Pressure</label>
             <div class="control">
-                <input class="input" placeholder="Pressure in hPa e.g. 1001" type="text" name="pressure">
+                <input class="input" placeholder="Pressure in hPa e.g. 1001" type="text" name="pressure" required>
             </div>
         </div>
     </div>

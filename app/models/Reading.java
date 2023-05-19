@@ -7,8 +7,8 @@ import play.db.jpa.Model;
 /**
  * This class is used to store weather readings in conjunction to the data.yml file
  *
- * @Author Aidas Vaiciunas
- * @Version 1.0
+ * @author Aidas Vaiciunas
+ * @version 1.0
  */
 @Entity
 public class Reading extends Model
