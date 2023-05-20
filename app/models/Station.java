@@ -277,6 +277,58 @@ public class Station extends Model {
     }
 
     /**
+     * This method gathers two most recent
+     * @return
+     */
+    public String getTempTrend(){
+        if (readings.size() < 2){
+            return " ";
+        } else {
+            double firstReading = getLatestTemp();
+            double secondReading = readings.get(readings.size() - 2).getTemperature();
+            if (firstReading > secondReading){
+                return "fa-arrow-up fa-fade"; // increasing
+            } else if (firstReading < secondReading){
+                return "fa-arrow-down fa-fade"; // decreasing
+            } else {
+                return "fa-minus fa-beat"; // steady
+            }
+        }
+    }
+
+    public String getPressureTrend(){
+        if (readings.size() < 2){
+            return " ";
+        } else {
+            int firstReading = getMinPressure();
+            int secondReading = readings.get(readings.size() -2).getPressure();
+            if (firstReading > secondReading){
+                return "fa-arrow-up fa-fade";
+            } else if (firstReading < secondReading) {
+                return "fa-arrow-down fa-fade"; // decreasing
+            } else {
+                return "fa-minus fa-beat"; // steady
+            }
+        }
+    }
+
+    public String getWindTrend(){
+        if (readings.size() < 2){
+            return " ";
+        }else {
+            double firstReading = getLatestWindSpeed();
+            double secondReading = readings.get(readings.size() - 2).getWindSpeed();
+            if (firstReading > secondReading){
+                return "fa-arrow-up fa-fade";
+            } else if (firstReading < secondReading) {
+                return "fa-arrow-down fa-fade";
+            } else {
+                return "fa-minus fa-beat";
+            }
+        }
+    }
+
+    /**
      * This method works with Conversion class to convert large decimal points to .000
      * @return double with up to 3 decimal points
      */

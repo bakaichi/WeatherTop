@@ -39,7 +39,9 @@
                         ${station.getLatestTemp()}°C<br>
                         ${station.toFahrenheit()}°F <br>
                         Max: ${station.getMaxTemp()}°C<br>
-                        Min: ${station.getMinTemp()}°C<br><br><br>
+                        Min: ${station.getMinTemp()}°C<br><br><br><br>
+                        <i class="fa-solid fa-xl ${station.getTempTrend()}"></i>
+
                     </div>
                 </div>
             </div>
@@ -54,7 +56,8 @@
                         Feels like <br>
                         ${station.toWindChill()}°C <br>
                         Max ${station.getMaxWindSpeed()} km/h <br>
-                        Min ${station.getMinWindSpeed()} km/h
+                        Min ${station.getMinWindSpeed()} km/h <br><br>
+                        <i class="fa-solid fa-xl ${station.getWindTrend()}"></i>
                     </div>
                 </div>
             </div>
@@ -66,7 +69,8 @@
                         <h2><i class="fa-solid fa-arrow-down-short-wide"></i> <br> Pressure</h2>
                         ${station.getLatestPressure()} hpa<br>
                         Max: ${station.getMaxPressure()} hpa<br>
-                        Min: ${station.getMinPressure()} hpa <br><br><br><br>
+                        Min: ${station.getMinPressure()} hpa <br><br><br><br><br>
+                        <i class="fa-solid fa-xl ${station.getPressureTrend()}"></i>
                     </div>
                 </div>
             </div>
