@@ -11,6 +11,7 @@ GET     /signup                                 Accounts.signup
 GET     /login                                  Accounts.login
 GET     /logout                                 Accounts.logout
 GET     /dashboard/{id}/deleteStation/{stationid} Dashboard.deleteStation
+GET    /station/{id}/deletereading/{readingid}        StationCtrl.deleteReading
 
 # Post Page
 POST    /dashboard/addstation                   Dashboard.addStation

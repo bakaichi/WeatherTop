@@ -40,6 +40,5 @@ public class Dashboard extends Controller{
     Logger.info("Deleting " + station.getName());
     redirect("/dashboard");
   }
-
 }
 

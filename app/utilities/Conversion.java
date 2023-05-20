@@ -75,11 +75,22 @@ public class Conversion extends Model{
         return s;
     }
 
-    //converts celcius to fahrenheit
+    /**
+     * This method is used to convert temperature in Celcius into Fahrenheit format via use of the formula
+     * below.
+     * @param temperature that is loaded in from the database in Station class.
+     * @return double in fahrenheit value
+     */
     public static double convertToFahrenheit(double temperature){
         return temperature * 9 / 5 + 32;
     }
 
+    /**
+     * This method converts the Celcius value from the database into Bulma framework call for a corresponding
+     * icon.
+     * @param temperature that is loaded from the database.
+     * @return String with a corresponding call to the Font Awesome library.
+     */
     public static String convertToTempIcon(double temperature){
         String s = null;
         if (temperature >= 35){
@@ -96,7 +107,12 @@ public class Conversion extends Model{
         return s;
     }
 
-    // wind speed to beufort scale
+    /**
+     * This method converts wind speed into Beufort format using calculations presented in the brief of the
+     * assignment.
+     * @param windSpeed as is loaded from the database - intended to work in conjunction with Station class.
+     * @return int in Beufort format
+     */
     public static int convertToBeufort(int windSpeed){
 
         if (windSpeed >= 103){
@@ -127,6 +143,12 @@ public class Conversion extends Model{
         return windSpeed;
     }
 
+    /**
+     * This method calculates the windchill factor and rounds the resulting value to 1 decimal point
+     * @param windSpeed from the database - intended to be used with Station class
+     * @param temperature most recent from the database - should be used with Station class
+     * @return double Wind Chill calculation that is rounded to .0
+     */
     public static double toWindChill(double windSpeed, double temperature){
         double windChill = 13.12 + 0.6215 * temperature - 11.37 * Math.pow(windSpeed, 0.16)
                 + 0.3965 * temperature * Math.pow(windSpeed, 0.16);
@@ -134,6 +156,11 @@ public class Conversion extends Model{
         return windChill;
     }
 
+    /**
+     * This method converts the wind direction in degrees into a String value.
+     * @param direction wind direction from the database
+     * @return String of wind direction in String format
+     */
     public static String windDirectionToString(int direction){
         String windDirection;
         if (direction >= 326.25){
@@ -172,6 +199,11 @@ public class Conversion extends Model{
         return windDirection;
     }
 
+    /**
+     * This method is used for rounding numbers to 3 decimal points.
+     * @param num any number that the user might need to round to .000 decimal places. In this case used for Lat at Lng
+     * @return double rounded to .000 decimal places.
+     */
     public static double rounding(float num){
         double k;
         k = Math.round(num * 1000.0) / 1000.0;

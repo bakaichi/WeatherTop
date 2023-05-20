@@ -277,7 +277,7 @@ public class Station extends Model {
     }
 
     /**
-     * This method works with Conversion class to convert large decimal points to 3
+     * This method works with Conversion class to convert large decimal points to .000
      * @return double with up to 3 decimal points
      */
     public double roundLat(){
@@ -285,7 +285,7 @@ public class Station extends Model {
     }
 
     /**
-     * This method works with Conversion class to convert large decimal points to 3
+     * This method works with Conversion class to convert large decimal points to .000
      * @return double with up to 3 decimal points
      */
     public double roundLng(){
