@@ -28,8 +28,3 @@ the data entered. A user can have any amount of stations and readings added.
 - Add readings to the station
 - Readings and stations can be added and removed as the user wishes
 
-### Test account
-- Test account is available for users
-- email: homer@simpson.com
-- password: secret
-
