@@ -277,8 +277,9 @@ public class Station extends Model {
     }
 
     /**
-     * This method gathers two most recent
-     * @return
+     * This method gathers two most recent readings added to the station
+     * and compares them to find a trend between them.
+     * @return String with corresponding call for Bulma framework.
      */
     public String getTempTrend(){
         if (readings.size() < 2){
@@ -296,6 +297,11 @@ public class Station extends Model {
         }
     }
 
+    /**
+     * This method gathers two most recent readings added to the station
+     * and compares them to find a trend between them.
+     * @return String with corresponding call for Bulma framework.
+     */
     public String getPressureTrend(){
         if (readings.size() < 2){
             return " ";
@@ -312,6 +318,11 @@ public class Station extends Model {
         }
     }
 
+    /**
+     * This method gathers two most recent readings added to the station
+     * and compares them to find a trend between them.
+     * @return String with corresponding call for Bulma framework.
+     */
     public String getWindTrend(){
         if (readings.size() < 2){
             return " ";
