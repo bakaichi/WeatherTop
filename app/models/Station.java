@@ -306,7 +306,7 @@ public class Station extends Model {
         if (readings.size() < 2){
             return " ";
         } else {
-            int firstReading = getMinPressure();
+            int firstReading = getLatestPressure();
             int secondReading = readings.get(readings.size() -2).getPressure();
             if (firstReading > secondReading){
                 return "fa-arrow-up fa-fade";
