@@ -3,29 +3,35 @@
 #{welcomemenu id:"login"/}
 
 <section class="content box">
-  <div class="columns">
-    <div class="column is-half">
-      <form action="/authenticate" method="POST">
-        <h3 class="subtitle">Log-in</h3>
-        <div class="field">
-          <label class="label">Email</label>
-          <p class="control has-icons-left">
-            <input class="input" placeholder="Email" name="email" required>
-            <span class="icon is-small is-left">
-              <i class="fas fa-envelope"></i>
-            </span>
-          </p>
+  <div class="content-flex">
+    <div class="columns">
+        <div class="column" id="logon">
+          <form action="/authenticate" method="POST">
+            <h3 class="subtitle">Log-in</h3>
+            <div class="field">
+              <label class="label">Email</label>
+              <p class="control has-icons-left">
+                <input class="input" placeholder="Email" name="email" required>
+                <span class="icon is-small is-left">
+                  <i class="fas fa-envelope"></i>
+                </span>
+              </p>
+            </div>
+            <div class="field">
+              <label class="label">Password</label>
+              <p class="control has-icons-left">
+                <input class="input" placeholder="Password" type="password" name="password" required>
+                <span class="icon is-small is-left">
+                  <i class="fas fa-lock"></i>
+                </span>
+              </p>
+            <button class="button is-link">Login</button>
+          </form>
         </div>
-        <div class="field">
-          <label class="label">Password</label>
-          <p class="control has-icons-left">
-            <input class="input" placeholder="Password" type="password" name="password" required>
-            <span class="icon is-small is-left">
-              <i class="fas fa-lock"></i>
-            </span>
-          </p>
-        <button class="button is-link">Login</button>
-      </form>
+      </div>
+    </div>
+    <div class="content-img">
+      <img id="enter" src="/public/images/login.jpg">
     </div>
   </div>
 </section>

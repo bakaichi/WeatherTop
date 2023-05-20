@@ -3,50 +3,55 @@
 #{welcomemenu id:"signup"/}
 
 <section class="content box">
-  <div class="columns">
-    <div class="column is-half">
-      <form action="/register" method="POST">
-        <h3 class="subtitle">Register</h3>
-        <div class="field is-horizontal field-body">
+  <div class="content-flex">
+    <div class="columns">
+      <div class="column">
+        <form action="/register" method="POST">
+          <h3 class="subtitle">Register</h3>
+          <div class="field is-horizontal field-body">
+            <div class="field">
+              <label class="label">First Name</label>
+              <p class="control has-icons-left">
+                <input class="input" type="text" placeholder="First Name" name="firstname" required>
+                <span class="icon is-small is-left">
+                  <i class="fas fa-user"></i>
+                </span>
+              </p>
+            </div>
+            <div class="field">
+              <label class="label">Last Name</label>
+              <p class="control has-icons-left">
+                <input class="input" type="text" placeholder="Last Name" name="lastname" required>
+                <span class="icon is-small is-left">
+                  <i class="fas fa-user"></i>
+                </span>
+              </p>
+            </div>
+          </div>
           <div class="field">
-            <label class="label">First Name</label>
+            <label class="label">Email</label>
             <p class="control has-icons-left">
-              <input class="input" type="text" placeholder="First Name" name="firstname" required>
+              <input class="input" placeholder="Email" name="email" required>
               <span class="icon is-small is-left">
-                <i class="fas fa-user"></i>
+                <i class="fas fa-envelope"></i>
               </span>
             </p>
           </div>
           <div class="field">
-            <label class="label">Last Name</label>
+            <label class="label">Password</label>
             <p class="control has-icons-left">
-              <input class="input" type="text" placeholder="Last Name" name="lastname" required>
+            <input class="input" placeholder="Password" type="password" name="password" required>
               <span class="icon is-small is-left">
-                <i class="fas fa-user"></i>
+                <i class="fas fa-lock"></i>
               </span>
             </p>
           </div>
-        </div>
-        <div class="field">
-          <label class="label">Email</label>
-          <p class="control has-icons-left">
-            <input class="input" placeholder="Email" name="email" required>
-            <span class="icon is-small is-left">
-              <i class="fas fa-envelope"></i>
-            </span>
-          </p>
-        </div>
-        <div class="field">
-          <label class="label">Password</label>
-          <p class="control has-icons-left">
-          <input class="input" placeholder="Password" type="password" name="password" required>
-            <span class="icon is-small is-left">
-              <i class="fas fa-lock"></i>
-            </span>
-          </p>
-        </div>
-        <button class="button is-link">Submit</button>
-      </form>
+          <button class="button is-link">Submit</button>
+        </form>
+      </div>
+    </div>
+    <div class="content-img">
+      <img id="register" src="/public/images/register.jpg">
     </div>
   </div>
 </section>

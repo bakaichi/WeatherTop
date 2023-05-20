@@ -4,9 +4,29 @@
 }
 
 .content-img {
-    width: 400px;
+    min-width: 400px;
+    margin-left: 3em;
+    padding-left: 1em;
+    padding-top: 3em;
+}
+
+.p {
+    text-align: left;
 }
 
 .card {
     min-height: 100%;
+}
+
+#logon {
+    min-width: 30em;
+}
+
+#enter {
+    max-height: 25em;
+    padding-left: 3em;
+}
+
+#register {
+    padding-top: 1.5em;
 }
