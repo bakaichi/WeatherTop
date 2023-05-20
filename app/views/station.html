@@ -11,7 +11,7 @@
 
     <div class="columns">
         <div class="column is-one-fifth">
-            <div class="card" style="min-height: 100%;">
+            <div class="card">
                 <div class="card-content">
                     <div class="content has-text-centered">
                         <h2><i class="fa-solid fa-location-dot"></i><br>${station.name}</h2><br>
@@ -22,7 +22,7 @@
             </div>
         </div>
         <div class="column is-one-fifth">
-            <div class="card" style="min-height: 100%;">
+            <div class="card">
                 <div class="card-content">
                     <div class="content has-text-centered">
                         <h2><i class="fa-solid ${station.toCodeIcon()}"></i> <br> Weather</h2><br>
@@ -32,7 +32,7 @@
             </div>
         </div>
         <div class="column is-one-fifth">
-            <div class="card" style="min-height: 100%;">
+            <div class="card">
                 <div class="card-content">
                     <div class="content has-text-centered">
                         <h2><i class="fa-solid ${station.toTempIcon()}"></i> <br>Temp</h2>
@@ -45,7 +45,7 @@
             </div>
         </div>
         <div class="column is-one-fifth">
-            <div class="card" style="min-height: 100%;">
+            <div class="card">
                 <div class="card-content">
                     <div class="content has-text-centered">
                         <h2><i class="fa-solid fa-wind"></i> <br> Wind</h2>
@@ -60,7 +60,7 @@
             </div>
         </div>
         <div class="column is-one-fifth">
-            <div class="card" style="min-height: 100%;">
+            <div class="card">
                 <div class="card-content">
                     <div class="content has-text-centered">
                         <h2><i class="fa-solid fa-arrow-down-short-wide"></i> <br> Pressure</h2>
@@ -76,7 +76,7 @@
     #{addreading station:station /}
 #{/if}
     #{else}
-    <div class="card" style="min-width: 100%"> #{listreadings station:station /}</div>
+    <div class="card" > #{listreadings station:station /}</div>
         <h1><br> There are no Readings for ${station.name}<br><br><br></h1>
     #{addreading station:station /}
     #{/else}
