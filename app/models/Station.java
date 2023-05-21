@@ -22,7 +22,7 @@ import play.db.jpa.Model;
  * for weather readings.
  *
  * @author Aidas Vaiciunas
- * @version 2.0
+ * @version 2.4
  */
 @Entity
 public class Station extends Model {

@@ -5,8 +5,8 @@ import javax.persistence.Entity;
 import play.db.jpa.Model;
 
 /**
- * This class is used to store weather readings in conjunction to the data.yml file
- *
+ * This class is used to store and construct weather readings in conjunction to the data.yml file
+ * and new readings that users might add to the database
  * @author Aidas Vaiciunas
  * @version 2.0
  */
@@ -28,8 +28,6 @@ public class Reading extends Model
         this.windDirection = windDirection;
         this.pressure = pressure;
     }
-
-
 
     // getters //
     public int getCode() {

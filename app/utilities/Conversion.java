@@ -92,17 +92,15 @@ public class Conversion extends Model{
      * @return String with a corresponding call to the Font Awesome library.
      */
     public static String convertToTempIcon(double temperature){
-        String s = null;
-        if (temperature >= 35){
+        String s;
+        if (temperature >= 30){
             s = "fa-temperature-high";
-        } else if (temperature <= 35){
+        } else if (temperature >= 20){
             s = "fa-temperature-half";
-        } else if (temperature <= 20) {
+        } else if (temperature >= 10) {
             s = "fa-temperature-quarter";
-        } else if (temperature <= 10) {
-            s = "fa-temperature-low";
         } else {
-            s = "fa-temperature-empty";
+            s = "fa-temperature-low";
         }
         return s;
     }

@@ -12,7 +12,7 @@ import play.mvc.Controller;
  * authenticating a user's credentials, and retrieving the currently
  *
  * @Author: Aidas Vaiciunas
- * @Version: 1.0
+ * @Version: 2.0
  */
 public class Accounts extends Controller{
     /**
@@ -64,8 +64,8 @@ public class Accounts extends Controller{
      * match a user in the database.
      * If the password and email match the user gets redirected to 'dashboard'
      * Otherwise the user will be redirected back to 'login' page.
-     * @param email
-     * @param password
+     * @param email users email
+     * @param password users password
      * - no return values
      */
     public static void authenticate(String email, String password){
