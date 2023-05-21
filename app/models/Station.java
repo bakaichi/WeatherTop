@@ -26,360 +26,378 @@ import play.db.jpa.Model;
  */
 @Entity
 public class Station extends Model {
-    /**
-     * Fields for Station
-     */
-    private String name;
-    private float lat, lng;
-    @OneToMany(cascade = CascadeType.ALL)
+  /**
+   * Fields for Station
+   */
+  private String name;
+  private float lat, lng;
+  @OneToMany(cascade = CascadeType.ALL)
 
-    // Readings constructed in an ArrayList
-    public List<Reading> readings = new ArrayList<Reading>();
+  // Readings constructed in an ArrayList
+  public List<Reading> readings = new ArrayList<Reading>();
 
 
-    /**
-     * Constructor for Station - Taking only one parameter of 'name'
-     */
-    public Station(String name) {
-        this.name = name;
+  /**
+   * Constructor for Station - Taking only one parameter of 'name'
+   */
+  public Station(String name) {
+    this.name = name;
+  }
+
+  /**
+   * Overloaded constructor for Station taking 3 parameters
+   *
+   * @param name = name of the station
+   * @param lat  = latitude of the station
+   * @param lng  = longitude of the station
+   */
+  public Station(String name, float lat, float lng) {
+    this.name = name;
+    this.lat = lat;
+    this.lng = lng;
+  }
+
+  /**
+   * This method is responsible for retrieving the latest code added to
+   * the database
+   *
+   * @return latest code from the ArrayList
+   */
+  public int getLatestCode() {
+    if (readings.isEmpty()) {  // if readings are empty return 0
+      return 0;
+    } else {  // go through the array of readings and get latest code entered for each station
+      return readings.get(readings.size() - 1).getCode();
     }
+  }
 
-    /**
-     * Overloaded constructor for Station taking 3 parameters
-     * @param name = name of the station
-     * @param lat = latitude of the station
-     * @param lng = longitude of the station
-     */
-    public Station(String name, float lat, float lng){
-        this.name = name;
-        this.lat = lat;
-        this.lng = lng;
+  /**
+   * This method works in conjuction with Conversion class to work out the correct Weather icon
+   * to use.
+   *
+   * @return String that will display appropriate icon via Bulma Syntax
+   */
+  public String toCodeIcon() {
+    return Conversion.convertToWeatherIcon(getLatestCode());
+  }
+
+  /**
+   * This method is responsible to convert the Latest code into a string value
+   * the conversion itself is linked to "Conversion" class
+   *
+   * @return String "thunder, rain" etc.
+   */
+  public String toCode() {
+    return Conversion.convertWeatherCode(getLatestCode());
+  }
+
+  /**
+   * This method is responsible for retrieving the latest Temperature added to
+   * the database
+   *
+   * @return latest Temperature in the ArrayList
+   */
+  public double getLatestTemp() {
+    if (readings.isEmpty()) {
+      return 0;
+    } else {
+      return readings.get(readings.size() - 1).getTemperature();
     }
+  }
 
-    /**
-     * This method is responsible for retrieving the latest code added to
-     * the database
-     *
-     * @return latest code from the ArrayList
-     */
-    public int getLatestCode(){
-        if (readings.isEmpty()){  // if readings are empty return 0
-            return 0;
-        } else {  // go through the array of readings and get latest code entered for each station
-            return readings.get(readings.size() -1).getCode();
-        }
+  /**
+   * This method works in conjuction with Conversion class to work out the correct Temperature icon
+   * to use.
+   *
+   * @return String that will display appropriate icon via Bulma Syntax
+   */
+  public String toTempIcon() {
+    return Conversion.convertToTempIcon(getLatestTemp());
+  }
+
+  /**
+   * This method converts the latest Temperature in Celcius into Fahrenheit value
+   *
+   * @return double Temperature in Fahrenheit
+   */
+  public double toFahrenheit() {
+    return Conversion.convertToFahrenheit(getLatestTemp());
+  }
+
+  /**
+   * This method retrieves the latest added WindSpeed from the Database/ArrayList
+   *
+   * @return double: Latest Wind Speed
+   */
+  public double getLatestWindSpeed() {
+    if (readings.isEmpty()) {
+      return 0;
+    } else {
+      return readings.get(readings.size() - 1).getWindSpeed();
     }
+  }
 
-    /**
-     * This method works in conjuction with Conversion class to work out the correct Weather icon
-     * to use.
-     * @return String that will display appropriate icon via Bulma Syntax
-     */
-    public String toCodeIcon(){
-        return Conversion.convertToWeatherIcon(getLatestCode());
+  /**
+   * This method gets the latest Wind Direction from the database/ArrayList
+   *
+   * @return int: Latest added Wind Direction
+   */
+  public int getLatestWindDirection() {
+    if (readings.isEmpty()) {
+      return 0;
+    } else {
+      return readings.get(readings.size() - 1).getWindDirection();
     }
+  }
 
-    /**
-     * This method is responsible to convert the Latest code into a string value
-     * the conversion itself is linked to "Conversion" class
-     * @return String "thunder, rain" etc.
-     */
-    public String toCode(){
-        return Conversion.convertWeatherCode(getLatestCode());
+  /**
+   * This method takes latest wind direction and converts it into String value
+   *
+   * @return String: Numbers converted into Strings (North, East etc.)
+   */
+  public String windDirection() {
+    return Conversion.windDirectionToString(getLatestWindDirection());
+  }
+
+  /**
+   * This method calculates Wind Chill by using Wind Speed and Temperature in
+   * its calculation specified in "Conversion" class
+   *
+   * @return double: Wind chill factor.
+   */
+  public double toWindChill() {
+    return Conversion.toWindChill(getLatestWindSpeed(), getLatestTemp());
+  }
+
+  /**
+   * This method converts Windpseed into Beufort scale and also converts double
+   * value into an int (i.e. no decimal point result)
+   *
+   * @return int: In Beufort scale format
+   */
+  public int toBeufort() {
+    int windSpeed = (int) getLatestWindSpeed(); // convert the double to int
+    return Conversion.convertToBeufort(windSpeed); // convert the int to beufort
+  }
+
+  /**
+   * This method gets latest Pressure from the ArrayList/Database
+   *
+   * @return int: Last added Pressure to the ArrayList
+   */
+  public int getLatestPressure() {
+    if (readings.isEmpty()) {
+      return 0;
+    } else {
+      return readings.get(readings.size() - 1).getPressure();
     }
+  }
 
-    /**
-     * This method is responsible for retrieving the latest Temperature added to
-     * the database
-     * @return latest Temperature in the ArrayList
-     */
-    public double getLatestTemp(){
-        if (readings.isEmpty()){
-            return 0;
-        } else {
-            return readings.get(readings.size() -1).getTemperature();
-        }
+  /**
+   * This method loops through each element of an array and finds the maximum value
+   * stored within.
+   *
+   * @return max value of wind speed
+   */
+  public double getMaxWindSpeed() {
+    double maxWindSpeed = Double.MIN_VALUE;
+    for (Reading reading : readings) {
+      if (reading.getWindSpeed() > maxWindSpeed) {
+        maxWindSpeed = reading.getWindSpeed();
+      }
     }
+    return maxWindSpeed;
+  }
 
-    /**
-     * This method works in conjuction with Conversion class to work out the correct Temperature icon
-     * to use.
-     * @return String that will display appropriate icon via Bulma Syntax
-     */
-    public String toTempIcon(){
-        return Conversion.convertToTempIcon(getLatestTemp());
+  /**
+   * This method loops through each element of an array and finds the minimum value
+   * stored within.
+   *
+   * @return minimum value of wind speed
+   */
+  public double getMinWindSpeed() {
+    double minWindSpeed = Double.MAX_VALUE;
+    for (Reading reading : readings) {
+      if (reading.getWindSpeed() < minWindSpeed) {
+        minWindSpeed = reading.getWindSpeed();
+      }
     }
+    return minWindSpeed;
+  }
 
-    /**
-     * This method converts the latest Temperature in Celcius into Fahrenheit value
-     * @return double Temperature in Fahrenheit
-     */
-    public double toFahrenheit(){
-        return Conversion.convertToFahrenheit(getLatestTemp());
+  /**
+   * This method loops through each element of an array and finds the maximum value
+   * stored within.
+   *
+   * @return max value of Pressure
+   */
+  public int getMaxPressure() {
+    int maxPressure = Integer.MIN_VALUE;
+    for (Reading reading : readings) {
+      if (reading.getPressure() > maxPressure) {
+        maxPressure = reading.getPressure();
+      }
     }
+    return maxPressure;
+  }
 
-    /**
-     * This method retrieves the latest added WindSpeed from the Database/ArrayList
-     * @return double: Latest Wind Speed
-     */
-    public double getLatestWindSpeed(){
-        if (readings.isEmpty()){
-            return 0;
-        } else {
-            return readings.get(readings.size() -1).getWindSpeed();
-        }
+  /**
+   * This method loops through each element of an array and finds the minimum value
+   * stored within.
+   *
+   * @return minimum value of Pressure
+   */
+  public int getMinPressure() {
+    int minPressure = Integer.MAX_VALUE;
+    for (Reading reading : readings) {
+      if (reading.getPressure() < minPressure) {
+        minPressure = reading.getPressure();
+      }
     }
+    return minPressure;
+  }
 
-    /**
-     * This method gets the latest Wind Direction from the database/ArrayList
-     *
-     * @return int: Latest added Wind Direction
-     */
-    public int getLatestWindDirection(){
-        if(readings.isEmpty()){
-            return 0;
-        } else {
-            return readings.get(readings.size() -1).getWindDirection();
-        }
+  /**
+   * This method loops through each element of an array and finds the maximum value
+   * stored within.
+   *
+   * @return max value of Temperature
+   */
+  public double getMaxTemp() {
+    double maxTemp = Double.MIN_VALUE;
+    for (Reading reading : readings) {
+      if (reading.getTemperature() > maxTemp) {
+        maxTemp = reading.getTemperature();
+      }
     }
+    return maxTemp;
+  }
 
-    /**
-     * This method takes latest wind direction and converts it into String value
-     *
-     * @return String: Numbers converted into Strings (North, East etc.)
-     */
-    public String windDirection(){
-        return Conversion.windDirectionToString(getLatestWindDirection());
+  /**
+   * This method loops through each element of an array and finds the minimum value
+   * stored within.
+   *
+   * @return minimum value of Temperature
+   */
+  public double getMinTemp() {
+    double minTemp = Double.MAX_VALUE;
+    for (Reading reading : readings) {
+      if (reading.getTemperature() < minTemp) {
+        minTemp = reading.getTemperature();
+      }
     }
+    return minTemp;
+  }
 
-    /**
-     * This method calculates Wind Chill by using Wind Speed and Temperature in
-     * its calculation specified in "Conversion" class
-     *
-     * @return double: Wind chill factor.
-     */
-    public double toWindChill(){
-        return Conversion.toWindChill(getLatestWindSpeed(), getLatestTemp());
+  /**
+   * This method gathers two most recent readings added to the station
+   * and compares them to find a trend between them.
+   *
+   * @return String with corresponding call for Bulma framework.
+   */
+  public String getTempTrend() {
+    if (readings.size() < 2) {
+      return " ";
+    } else {
+      double firstReading = getLatestTemp();
+      double secondReading = readings.get(readings.size() - 2).getTemperature();
+      if (firstReading > secondReading) {
+        return "fa-arrow-up fa-fade"; // increasing
+      } else if (firstReading < secondReading) {
+        return "fa-arrow-down fa-fade"; // decreasing
+      } else {
+        return "fa-minus fa-beat"; // steady
+      }
     }
+  }
 
-    /**
-     * This method converts Windpseed into Beufort scale and also converts double
-     * value into an int (i.e. no decimal point result)
-     *
-     * @return int: In Beufort scale format
-     */
-    public int toBeufort(){
-        int windSpeed = (int) getLatestWindSpeed(); // convert the double to int
-        return Conversion.convertToBeufort(windSpeed); // convert the int to beufort
+  /**
+   * This method gathers two most recent readings added to the station
+   * and compares them to find a trend between them.
+   *
+   * @return String with corresponding call for Bulma framework.
+   */
+  public String getPressureTrend() {
+    if (readings.size() < 2) {
+      return " ";
+    } else {
+      int firstReading = getLatestPressure();
+      int secondReading = readings.get(readings.size() - 2).getPressure();
+      if (firstReading > secondReading) {
+        return "fa-arrow-up fa-fade";
+      } else if (firstReading < secondReading) {
+        return "fa-arrow-down fa-fade"; // decreasing
+      } else {
+        return "fa-minus fa-beat"; // steady
+      }
     }
+  }
 
-    /**
-     * This method gets latest Pressure from the ArrayList/Database
-     *
-     * @return int: Last added Pressure to the ArrayList
-     */
-    public int getLatestPressure(){
-        if(readings.isEmpty()){
-            return 0;
-        } else{
-            return readings.get(readings.size() -1).getPressure();
-        }
+  /**
+   * This method gathers two most recent readings added to the station
+   * and compares them to find a trend between them.
+   *
+   * @return String with corresponding call for Bulma framework.
+   */
+  public String getWindTrend() {
+    if (readings.size() < 2) {
+      return " ";
+    } else {
+      double firstReading = getLatestWindSpeed();
+      double secondReading = readings.get(readings.size() - 2).getWindSpeed();
+      if (firstReading > secondReading) {
+        return "fa-arrow-up fa-fade";
+      } else if (firstReading < secondReading) {
+        return "fa-arrow-down fa-fade";
+      } else {
+        return "fa-minus fa-beat";
+      }
     }
+  }
 
-    /**
-     * This method loops through each element of an array and finds the maximum value
-     * stored within.
-     * @return max value of wind speed
-     */
-    public double getMaxWindSpeed(){
-       double maxWindSpeed = Double.MIN_VALUE;
-       for (Reading reading : readings){
-           if (reading.getWindSpeed() > maxWindSpeed) {
-               maxWindSpeed = reading.getWindSpeed();
-           }
-       }
-       return maxWindSpeed;
-    }
+  /**
+   * This method works with Conversion class to convert large decimal points to .000
+   *
+   * @return double with up to 3 decimal points
+   */
+  public double roundLat() {
+    return Conversion.rounding(getLat());
+  }
 
-    /**
-     * This method loops through each element of an array and finds the minimum value
-     * stored within.
-     * @return minimum value of wind speed
-     */
-    public double getMinWindSpeed(){
-        double minWindSpeed = Double.MAX_VALUE;
-        for (Reading reading : readings){
-            if (reading.getWindSpeed() < minWindSpeed){
-                minWindSpeed = reading.getWindSpeed();
-            }
-        }
-        return minWindSpeed;
-    }
+  /**
+   * This method works with Conversion class to convert large decimal points to .000
+   *
+   * @return double with up to 3 decimal points
+   */
+  public double roundLng() {
+    return Conversion.rounding(getLng());
+  }
 
-    /**
-     * This method loops through each element of an array and finds the maximum value
-     * stored within.
-     * @return max value of Pressure
-     */
-    public int getMaxPressure(){
-        int maxPressure = Integer.MIN_VALUE;
-        for (Reading reading : readings){
-            if (reading.getPressure() > maxPressure){
-                maxPressure = reading.getPressure();
-            }
-        }
-        return maxPressure;
-    }
+  // getters
 
-    /**
-     * This method loops through each element of an array and finds the minimum value
-     * stored within.
-     * @return minimum value of Pressure
-     */
-    public int getMinPressure(){
-        int minPressure = Integer.MAX_VALUE;
-        for (Reading reading : readings){
-            if (reading.getPressure() < minPressure){
-                minPressure = reading.getPressure();
-            }
-        }
-        return minPressure;
-    }
+  public String getName() {
+    return name;
+  }
 
-    /**
-     * This method loops through each element of an array and finds the maximum value
-     * stored within.
-     * @return max value of Temperature
-     */
-    public double getMaxTemp(){
-        double maxTemp = Double.MIN_VALUE;
-        for (Reading reading : readings){
-            if (reading.getTemperature() > maxTemp){
-                maxTemp = reading.getTemperature();
-            }
-        }
-        return maxTemp;
-    }
+  public float getLat() {
+    return lat;
+  }
 
-    /**
-     * This method loops through each element of an array and finds the minimum value
-     * stored within.
-     * @return minimum value of Temperature
-     */
-    public double getMinTemp(){
-        double minTemp = Double.MAX_VALUE;
-        for (Reading reading : readings){
-            if (reading.getTemperature() < minTemp){
-                minTemp = reading.getTemperature();
-            }
-        }
-        return minTemp;
-    }
+  public float getLng() {
+    return lng;
+  }
 
-    /**
-     * This method gathers two most recent readings added to the station
-     * and compares them to find a trend between them.
-     * @return String with corresponding call for Bulma framework.
-     */
-    public String getTempTrend(){
-        if (readings.size() < 2){
-            return " ";
-        } else {
-            double firstReading = getLatestTemp();
-            double secondReading = readings.get(readings.size() - 2).getTemperature();
-            if (firstReading > secondReading){
-                return "fa-arrow-up fa-fade"; // increasing
-            } else if (firstReading < secondReading){
-                return "fa-arrow-down fa-fade"; // decreasing
-            } else {
-                return "fa-minus fa-beat"; // steady
-            }
-        }
-    }
+  // setters
 
-    /**
-     * This method gathers two most recent readings added to the station
-     * and compares them to find a trend between them.
-     * @return String with corresponding call for Bulma framework.
-     */
-    public String getPressureTrend(){
-        if (readings.size() < 2){
-            return " ";
-        } else {
-            int firstReading = getLatestPressure();
-            int secondReading = readings.get(readings.size() -2).getPressure();
-            if (firstReading > secondReading){
-                return "fa-arrow-up fa-fade";
-            } else if (firstReading < secondReading) {
-                return "fa-arrow-down fa-fade"; // decreasing
-            } else {
-                return "fa-minus fa-beat"; // steady
-            }
-        }
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    /**
-     * This method gathers two most recent readings added to the station
-     * and compares them to find a trend between them.
-     * @return String with corresponding call for Bulma framework.
-     */
-    public String getWindTrend(){
-        if (readings.size() < 2){
-            return " ";
-        }else {
-            double firstReading = getLatestWindSpeed();
-            double secondReading = readings.get(readings.size() - 2).getWindSpeed();
-            if (firstReading > secondReading){
-                return "fa-arrow-up fa-fade";
-            } else if (firstReading < secondReading) {
-                return "fa-arrow-down fa-fade";
-            } else {
-                return "fa-minus fa-beat";
-            }
-        }
-    }
+  public void setLat(float lat) {
+    this.lat = lat;
+  }
 
-    /**
-     * This method works with Conversion class to convert large decimal points to .000
-     * @return double with up to 3 decimal points
-     */
-    public double roundLat(){
-        return Conversion.rounding(getLat());
-    }
-
-    /**
-     * This method works with Conversion class to convert large decimal points to .000
-     * @return double with up to 3 decimal points
-     */
-    public double roundLng(){
-        return Conversion.rounding(getLng());
-    }
-
-    // getters
-
-    public String getName() {
-        return name;
-    }
-
-    public float getLat() {
-        return lat;
-    }
-
-    public float getLng() {
-        return lng;
-    }
-
-    // setters
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setLat(float lat) {
-        this.lat = lat;
-    }
-
-    public void setLng(float lng) {
-        this.lng = lng;
-    }
+  public void setLng(float lng) {
+    this.lng = lng;
+  }
 }

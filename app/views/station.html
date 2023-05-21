@@ -78,10 +78,10 @@
     </div>
     #{listreadings station:station /}
     #{addreading station:station /}
-#{/if}
+    #{/if}
     #{else}
-    <div class="card" > #{listreadings station:station /}</div>
-        <h1><br> There are no Readings for ${station.name}<br><br><br></h1>
+    <div class="card"> #{listreadings station:station /}</div>
+    <h1><br> There are no Readings for ${station.name}<br><br><br></h1>
     #{addreading station:station /}
     #{/else}
 </div>

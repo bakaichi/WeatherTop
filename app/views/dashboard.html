@@ -5,12 +5,13 @@
 
 #{list items:stationList, as:'station'}
 <div class="content box">
-  <h1 class="title">
-    ${station.name}
-  </h1>
+    <h1 class="title">
+        ${station.name}
+    </h1>
     <p>
         <a href="/stations/${station.id}"><i class="fa-regular fa-folder" style="color: #4790bd;"></i></a>
-      <a href="/dashboard/${member.id}/deleteStation/${station.id}"><i class="fa-regular fa-trash-can" style="color: #c02a5f;"></i></a>
+        <a href="/dashboard/${member.id}/deleteStation/${station.id}"><i class="fa-regular fa-trash-can"
+                                                                         style="color: #c02a5f;"></i></a>
     </p>
 </div>
 #{/list}
